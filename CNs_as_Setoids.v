@@ -98,16 +98,17 @@ Axiom c1: Book1.(B)->PHYINFO.(B). Axiom c2: Book2.(B)->PHYINFO.(B).
  (**John picked up and mastered three books->John mastered three informational objects**)
 Theorem pickedmastered3m: (Three_dot2 c1)(and PHYINFO(picked_up john )(mastered john))-> exists x y z: Book1.(B),mastered (john)(c1 x)/\mastered (john)(c1 y)/\mastered (john)(c1 z)/\ not((INFO.(B2))(c1(x))(c1(y)))/\not((INFO.(B2))(c1(y))(c1(z)))/\not((INFO.(B2))(c1(x))(c1(z))). cbv. firstorder. Qed.
 
-(**John picked up and mastered three books->John picked_up three physical objects**)                                                                                           
+                     (**John picked up and mastered three books->John picked_up three physical objects**)                                                                                           
 Theorem pickedmastered3p: (Three_dot2 c1)(and PHYINFO(picked_up john )(mastered john))-> exists x y z: Book1.(B),picked_up (john)(c1 x)/\picked_up (john)(c1 y)/\picked_up (john)(c1 z)/\ not((PHY.(B2))(c1(x))(c1(y)))/\not((PHY.(B2))(c1(y))(c1(z)))/\not((PHY.(B2))(c1(x))(c1(z))). cbv. firstorder. Qed.
 
+  
  (**John picked up and mastered three books-> John picked up three physical objects and mastered three informational objects**)
 Theorem pickedmastered3pm: (Three_dot2 c1)(and PHYINFO(picked_up john )(mastered john))-> exists x y z: Book1.(B),picked_up (john)(c1 x)/\picked_up (john)(c1 y)/\picked_up (john)(c1 z)/\ not((PHY.(B2))(c1(x))(c1(y)))/\not((PHY.(B2))(c1(y))(c1(z)))/\not((PHY.(B2))(c1(x))(c1(z)))/\mastered (john)(c1 x)/\mastered (john)(c1 y)/\mastered (john)(c1 z)/\ not((INFO.(B2))(c1(x))(c1(y)))/\not((INFO.(B2))(c1(y))(c1(z)))/\not((INFO.(B2))(c1(x))(c1(z))).
 cbv. firstorder. Qed.
 
-(**Collecting the previous examples plus new ones**)
- Theorem MANWALKSOME: (some MAN) walk-> (some  HUMAN) walk. cbv. intros.                                                       firstorder. Qed.
- Theorem BOOKPICKED:( (some Book1) ( picked_up john))-> (some PHY)( picked_up john).  
+                      (**Collecting the previous examples plus new ones**)
+Theorem MANWALKSOME: (some MAN) walk-> (some  HUMAN) walk. cbv. intros.                                                       firstorder. Qed.
+Theorem BOOKPICKED:( (some Book1) ( picked_up john))-> (some PHY)( picked_up john).  
    cbv.  intro. firstorder. Qed. (**John picked up a book->John picked up a physical object**)
   Theorem BOOKMASTERED:( (some Book1) ( mastered john))-> (some INFO)( mastered john).  
     cbv.  intro. firstorder. Qed. (**John mastered  a book->John mastered an informational object**)
@@ -166,10 +167,7 @@ Theorem HEAVYIBOOK7:( (three HBook2) ( mastered john))-> (three Book2)( mastered
 Axiom HB: HBook1.(B)->Book1.(B). 
 
 Theorem HEAVYIBOOK8: (three HBook1)((picked_up john ))->    three Book1 (Heavy).
- decompose record HBook1.  cbv.
-decompose record heavybook. intros. 
-firstorder. decompose record H0. decompose record x.
-
+decompose record HBook1.  cbv. decompose record heavybook. intros.  firstorder. decompose record H0. decompose record x.
 decompose record x. exists l5. split. assumption.  decompose record x0. exists l6. split. assumption. decompose record x1. 
 exists l7. split. assumption. firstorder.  Abort all. End BOOK.
 
