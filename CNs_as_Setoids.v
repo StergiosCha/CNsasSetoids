@@ -41,8 +41,6 @@ Check (three HUMAN) walk.
 (** Defining the IC for man and then MAN**)
 Definition IC_Man:=  mkEquiv man AIC_Man EQ.
 Definition MAN:= mkCN man IC_Man.
-(** Coercion between the first projections of MAN and HUMAN**)
-Axiom mh1: MAN.(B)->HUMAN.(B). 
 
 (**A proof that if three men walk, three humans walk**)
 Theorem MANWALK: (three MAN) walk-> (three HUMAN) walk. cbv. intros. destruct H.
